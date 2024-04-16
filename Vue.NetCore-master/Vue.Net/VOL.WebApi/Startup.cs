@@ -26,6 +26,8 @@ using Newtonsoft.Json;
 using Quartz;
 using Quartz.Impl;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using VOL.AppManager.IServices.DocumentManagement;
+using VOL.AppManager.Services.DocumentManagement;
 using VOL.Core.Configuration;
 using VOL.Core.Extensions;
 using VOL.Core.Filters;
@@ -173,6 +175,7 @@ namespace VOL.WebApi
             services.AddSignalR();
             //services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
             //services.AddTransient<IPDFService, PDFService>();
+            services.AddTransient<IDocumentManagementService, DocumentManagementService>();
             services.AddHttpClient();
             Services.AddTransient<HttpResultfulJob>();
             Services.AddSingleton<ISchedulerFactory, StdSchedulerFactory>();

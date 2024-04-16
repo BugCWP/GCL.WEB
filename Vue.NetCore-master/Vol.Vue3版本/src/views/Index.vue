@@ -285,7 +285,7 @@ export default defineComponent({
     });
     const userImg = ref("");
     const navigation = reactive([
-      { orderNo: "0", id: "1", name: "首页", path: "/home" },
+      //{ orderNo: "0", id: "1", name: "首页", path: "/home" },
     ]);
     const logo = ref(imgUrl);
     const theme = ref("blue2");

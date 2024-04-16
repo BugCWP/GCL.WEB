@@ -108,7 +108,7 @@ let extension = {
         title: '操作',
         fixed: 'right',
         align: "center",
-        width: 130,
+        width: 100,
         render: (h, { row, column, index }) => {
           return h(
             "div", { style: { cursor: 'pointer' } }, [

@@ -4,6 +4,58 @@
         <name>VOL.WebApi</name>
     </assembly>
     <members>
+        <member name="M:VOL.WebApi.Controllers.DocumentManagement.DocumentManagementController.Update(VOL.Entity.DomainModels.SaveModel)">
+            <summary>
+            编辑支持主子表
+            [ModelBinder(BinderType =(typeof(ModelBinder.BaseModelBinder)))]可指定绑定modelbinder
+            </summary>
+            <param name="saveDataModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:VOL.WebApi.Controllers.DocumentManagement.DocumentManagementController.Submit(VOL.AppManager.Services.DocumentManagement.DocumentManagerDto)">
+            <summary>
+            编辑
+            1、明细表必须把主表的主键字段也设置为可编辑
+            2、修改、增加只会操作设置为编辑列的数据
+            </summary>
+            <param name="saveModel"></param>
+            <returns></returns>
+            <returns></returns>
+        </member>
+        <member name="M:VOL.WebApi.Controllers.DocumentManagement.DocumentManagementController.GetOne(VOL.AppManager.Services.DocumentManagement.DocumentManagerDto)">
+            <summary>
+            编辑
+            1、明细表必须把主表的主键字段也设置为可编辑
+            2、修改、增加只会操作设置为编辑列的数据
+            </summary>
+            <param name="saveModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:VOL.WebApi.Controllers.DocumentManagement.DocumentManagementController.InvokeService(System.String,System.Object[])">
+            <summary>
+            调用service方法
+            </summary>
+            <param name="methodName"></param>
+            <param name="parameters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:VOL.WebApi.Controllers.DocumentManagement.DocumentManagementController.InvokeService(System.String,System.Type[],System.Object[])">
+            <summary>
+            调用service方法
+            </summary>
+            <param name="methodName"></param>
+            <param name="types">为要调用重载的方法参数类型：new Type[] { typeof(SaveDataModel)</param>
+            <param name="parameters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:VOL.WebApi.Controllers.DocumentManagement.DocumentManagementController.JsonNormal(System.Object,Newtonsoft.Json.JsonSerializerSettings,System.Boolean)">
+            <summary>
+            2020.11.21增加json原格式返回数据(默认是驼峰格式)
+            </summary>
+            <param name="data"></param>
+            <param name="serializerSettings"></param>
+            <returns></returns>
+        </member>
         <!-- Badly formed XML comment ignored for member "T:VOL.WebApi.Controllers.Hubs.HomePageMessageHub" -->
         <member name="M:VOL.WebApi.Controllers.Hubs.HomePageMessageHub.#ctor(VOL.Core.CacheManager.ICacheService)">
             <summary>

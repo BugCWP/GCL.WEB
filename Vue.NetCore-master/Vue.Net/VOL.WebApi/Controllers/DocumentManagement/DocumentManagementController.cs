@@ -6,19 +6,18 @@ using VOL.Entity.DomainModels;
 using VOL.AppManager.IServices.DocumentManagement;
 using Newtonsoft.Json;
 using VOL.Core.Utilities;
+using VOL.AppManager.Services.DocumentManagement;
 
 namespace VOL.WebApi.Controllers.DocumentManagement
 {
+    [ApiController]
     [Route("api/DocumentManagement")]
-    public class DocumentManagementController
+    public class DocumentManagementController : Controller
     {
-        protected IDocumentManagementService Service;
-        public DocumentManagementController()
+        protected IDocumentManagementService _documentManagementService;
+        public DocumentManagementController(IDocumentManagementService documentManagementService)
         {
-        }
-        public DocumentManagementController(IDocumentManagementService service)
-        {
-            Service = service;
+            _documentManagementService = documentManagementService;
         }
 
         [ActionLog("查询")]
@@ -42,6 +41,35 @@ namespace VOL.WebApi.Controllers.DocumentManagement
         }
 
         /// <summary>
+        /// 编辑
+        /// 1、明细表必须把主表的主键字段也设置为可编辑
+        /// 2、修改、增加只会操作设置为编辑列的数据
+        /// </summary>
+        /// <param name="saveModel"></param>
+        /// <returns></returns>
+        /// <returns></returns>
+        [ActionLog("提交")]
+        [HttpPost, Route("Submit")]
+        public ActionResult Submit([FromBody] DocumentManagerDto dto)
+        {
+            return Json(InvokeService("Submit", new object[] { dto }) as WebResponseContent);
+        }
+
+        /// <summary>
+        /// 编辑
+        /// 1、明细表必须把主表的主键字段也设置为可编辑
+        /// 2、修改、增加只会操作设置为编辑列的数据
+        /// </summary>
+        /// <param name="saveModel"></param>
+        /// <returns></returns>
+        [ActionLog("获取单个数据")]
+        [HttpPost, Route("GetOne")]
+        public ActionResult GetOne([FromBody] DocumentManagerDto dto)
+        {
+            return Json(InvokeService("GetOne", new object[] { dto }) as WebResponseContent);
+        }
+
+        /// <summary>
         /// 调用service方法
         /// </summary>
         /// <param name="methodName"></param>
@@ -49,8 +77,9 @@ namespace VOL.WebApi.Controllers.DocumentManagement
         /// <returns></returns>
         private object InvokeService(string methodName, object[] parameters)
         {
-            return Service.GetType().GetMethod(methodName).Invoke(Service, parameters);
+            return _documentManagementService.GetType().GetMethod(methodName).Invoke(_documentManagementService, parameters);
         }
+
         /// <summary>
         /// 调用service方法
         /// </summary>
@@ -60,7 +89,7 @@ namespace VOL.WebApi.Controllers.DocumentManagement
         /// <returns></returns>
         private object InvokeService(string methodName, Type[] types, object[] parameters)
         {
-            return Service.GetType().GetMethod(methodName, types).Invoke(Service, parameters);
+            return _documentManagementService.GetType().GetMethod(methodName, types).Invoke(_documentManagementService, parameters);
         }
 
         /// <summary>
